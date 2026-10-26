@@ -1,0 +1,12 @@
+__pycache__/
+*.pyc
+*.egg-info/
+build/
+dist/
+.pytest_cache/
+.venv/
+/logs/
+temperature_tables.json
+# local working documents (contain personal names / drive paths); never commit
+SCOPE-OF-WORK.md
+SCOPE-OF-WORK.docx

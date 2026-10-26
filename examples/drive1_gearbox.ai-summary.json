@@ -1,0 +1,1162 @@
+{
+ "tool": "delica-4m40-diag",
+ "version": "0.1.0",
+ "ecu": "gearbox",
+ "source": "drive1_gearbox.csv",
+ "start_clock": "18:03:00",
+ "end_clock": "18:12:59",
+ "phases": [
+  {
+   "start_s": 0,
+   "end_s": 20,
+   "duration_s": 20,
+   "phase": "idle",
+   "start_clock": "18:03:00",
+   "speed_kmh": {
+    "mean": 0.0,
+    "min": 0.0,
+    "max": 0.0
+   },
+   "engine_rpm": {
+    "mean": 765.0,
+    "min": 750,
+    "max": 900
+   },
+   "pedal_V": {
+    "mean": 0.88,
+    "min": 0.86,
+    "max": 0.9
+   },
+   "gear": "N/P",
+   "atf_C": {
+    "mean": 62.0,
+    "min": 62,
+    "max": 62
+   },
+   "lockup_releases": 0
+  },
+  {
+   "start_s": 20,
+   "end_s": 37,
+   "duration_s": 17,
+   "phase": "stopped",
+   "start_clock": "18:03:20",
+   "speed_kmh": {
+    "mean": 0.0,
+    "min": 0.0,
+    "max": 0.0
+   },
+   "engine_rpm": {
+    "mean": 779.0,
+    "min": 750,
+    "max": 800
+   },
+   "pedal_V": {
+    "mean": 0.88,
+    "min": 0.86,
+    "max": 0.9
+   },
+   "gear": "R",
+   "atf_C": {
+    "mean": 62.0,
+    "min": 62,
+    "max": 62
+   },
+   "lockup_releases": 0
+  },
+  {
+   "start_s": 37,
+   "end_s": 50,
+   "duration_s": 13,
+   "phase": "coasting",
+   "start_clock": "18:03:37",
+   "speed_kmh": {
+    "mean": 2.8,
+    "min": 2.8,
+    "max": 2.8
+   },
+   "engine_rpm": {
+    "mean": 751.0,
+    "min": 700,
+    "max": 800
+   },
+   "pedal_V": {
+    "mean": 0.88,
+    "min": 0.86,
+    "max": 0.92
+   },
+   "gear": "R",
+   "atf_C": {
+    "mean": 62.0,
+    "min": 62,
+    "max": 62
+   },
+   "lockup_releases": 0
+  },
+  {
+   "start_s": 50,
+   "end_s": 89,
+   "duration_s": 39,
+   "phase": "cruise 0-30 km/h",
+   "start_clock": "18:03:49",
+   "speed_kmh": {
+    "mean": 14.0,
+    "min": 11.2,
+    "max": 19.6
+   },
+   "engine_rpm": {
+    "mean": 1147.0,
+    "min": 750,
+    "max": 1600
+   },
+   "pedal_V": {
+    "mean": 1.18,
+    "min": 0.86,
+    "max": 1.48
+   },
+   "gear": "1st",
+   "atf_C": {
+    "mean": 62.0,
+    "min": 62,
+    "max": 63
+   },
+   "lockup_releases": 0
+  },
+  {
+   "start_s": 89,
+   "end_s": 104,
+   "duration_s": 15,
+   "phase": "coasting",
+   "start_clock": "18:04:29",
+   "speed_kmh": {
+    "mean": 7.0,
+    "min": 0.0,
+    "max": 14.0
+   },
+   "engine_rpm": {
+    "mean": 808.0,
+    "min": 750,
+    "max": 1450
+   },
+   "pedal_V": {
+    "mean": 0.91,
+    "min": 0.86,
+    "max": 1.56
+   },
+   "gear": "2nd",
+   "atf_C": {
+    "mean": 63.0,
+    "min": 63,
+    "max": 63
+   },
+   "lockup_releases": 0
+  },
+  {
+   "start_s": 104,
+   "end_s": 117,
+   "duration_s": 13,
+   "phase": "accelerating",
+   "start_clock": "18:04:43",
+   "speed_kmh": {
+    "mean": 28.0,
+    "min": 14.0,
+    "max": 42.0
+   },
+   "engine_rpm": {
+    "mean": 1644.0,
+    "min": 800,
+    "max": 1850
+   },
+   "pedal_V": {
+    "mean": 1.76,
+    "min": 0.96,
+    "max": 1.93
+   },
+   "gear": "1st",
+   "atf_C": {
+    "mean": 63.0,
+    "min": 63,
+    "max": 63
+   },
+   "lockup_releases": 0
+  },
+  {
+   "start_s": 117,
+   "end_s": 133,
+   "duration_s": 16,
+   "phase": "coasting",
+   "start_clock": "18:04:57",
+   "speed_kmh": {
+    "mean": 25.2,
+    "min": 25.2,
+    "max": 25.2
+   },
+   "engine_rpm": {
+    "mean": 943.0,
+    "min": 750,
+    "max": 1250
+   },
+   "pedal_V": {
+    "mean": 0.89,
+    "min": 0.86,
+    "max": 0.92
+   },
+   "gear": "3rd",
+   "atf_C": {
+    "mean": 63.0,
+    "min": 63,
+    "max": 63
+   },
+   "locked_share_pct": 48,
+   "lockup_releases": 0
+  },
+  {
+   "start_s": 133,
+   "end_s": 162,
+   "duration_s": 29,
+   "phase": "stopped",
+   "start_clock": "18:05:13",
+   "speed_kmh": {
+    "mean": 0.0,
+    "min": 0.0,
+    "max": 0.0
+   },
+   "engine_rpm": {
+    "mean": 750.0,
+    "min": 750,
+    "max": 750
+   },
+   "pedal_V": {
+    "mean": 0.88,
+    "min": 0.86,
+    "max": 0.92
+   },
+   "gear": "1st",
+   "atf_C": {
+    "mean": 63.0,
+    "min": 63,
+    "max": 64
+   },
+   "lockup_releases": 0
+  },
+  {
+   "start_s": 162,
+   "end_s": 186,
+   "duration_s": 24,
+   "phase": "accelerating",
+   "start_clock": "18:05:42",
+   "speed_kmh": {
+    "mean": 46.2,
+    "min": 33.6,
+    "max": 58.8
+   },
+   "engine_rpm": {
+    "mean": 2102.0,
+    "min": 750,
+    "max": 2450
+   },
+   "pedal_V": {
+    "mean": 2.33,
+    "min": 0.88,
+    "max": 2.64
+   },
+   "gear": "2nd",
+   "atf_C": {
+    "mean": 64.0,
+    "min": 64,
+    "max": 64
+   },
+   "lockup_releases": 0
+  },
+  {
+   "start_s": 186,
+   "end_s": 277,
+   "duration_s": 91,
+   "phase": "cruise 70-90 km/h",
+   "start_clock": "18:06:06",
+   "speed_kmh": {
+    "mean": 83.2,
+    "min": 72.8,
+    "max": 89.6
+   },
+   "engine_rpm": {
+    "mean": 2097.0,
+    "min": 1550,
+    "max": 2300
+   },
+   "pedal_V": {
+    "mean": 1.97,
+    "min": 0.88,
+    "max": 2.34
+   },
+   "gear": "4th",
+   "atf_C": {
+    "mean": 66.0,
+    "min": 65,
+    "max": 67
+   },
+   "locked_share_pct": 55,
+   "lockup_releases": 3
+  },
+  {
+   "start_s": 277,
+   "end_s": 286,
+   "duration_s": 9,
+   "phase": "coasting",
+   "start_clock": "18:07:36",
+   "speed_kmh": {
+    "mean": 86.8,
+    "min": 86.8,
+    "max": 86.8
+   },
+   "engine_rpm": {
+    "mean": 1682.0,
+    "min": 1550,
+    "max": 2150
+   },
+   "pedal_V": {
+    "mean": 0.95,
+    "min": 0.86,
+    "max": 1.56
+   },
+   "gear": "4th",
+   "atf_C": {
+    "mean": 67.0,
+    "min": 67,
+    "max": 67
+   },
+   "locked_share_pct": 100,
+   "lockup_releases": 0
+  },
+  {
+   "start_s": 286,
+   "end_s": 342,
+   "duration_s": 56,
+   "phase": "cruise 70-90 km/h",
+   "start_clock": "18:07:45",
+   "speed_kmh": {
+    "mean": 84.0,
+    "min": 81.2,
+    "max": 86.8
+   },
+   "engine_rpm": {
+    "mean": 2037.0,
+    "min": 1650,
+    "max": 2200
+   },
+   "pedal_V": {
+    "mean": 1.69,
+    "min": 0.88,
+    "max": 1.99
+   },
+   "gear": "4th",
+   "atf_C": {
+    "mean": 67.0,
+    "min": 66,
+    "max": 67
+   },
+   "locked_share_pct": 83,
+   "lockup_releases": 2
+  },
+  {
+   "start_s": 342,
+   "end_s": 393,
+   "duration_s": 51,
+   "phase": "coasting",
+   "start_clock": "18:08:42",
+   "speed_kmh": {
+    "mean": 56.5,
+    "min": 14.0,
+    "max": 81.2
+   },
+   "engine_rpm": {
+    "mean": 1220.0,
+    "min": 800,
+    "max": 1900
+   },
+   "pedal_V": {
+    "mean": 0.98,
+    "min": 0.86,
+    "max": 1.62
+   },
+   "gear": "4th",
+   "atf_C": {
+    "mean": 66.0,
+    "min": 65,
+    "max": 66
+   },
+   "locked_share_pct": 74,
+   "lockup_releases": 1
+  },
+  {
+   "start_s": 393,
+   "end_s": 418,
+   "duration_s": 25,
+   "phase": "accelerating",
+   "start_clock": "18:09:32",
+   "speed_kmh": {
+    "mean": 42.0,
+    "min": 19.6,
+    "max": 61.6
+   },
+   "engine_rpm": {
+    "mean": 2012.0,
+    "min": 1500,
+    "max": 2250
+   },
+   "pedal_V": {
+    "mean": 2.15,
+    "min": 1.6,
+    "max": 2.36
+   },
+   "gear": "4th",
+   "atf_C": {
+    "mean": 65.0,
+    "min": 65,
+    "max": 65
+   },
+   "locked_share_pct": 0,
+   "lockup_releases": 0
+  },
+  {
+   "start_s": 418,
+   "end_s": 463,
+   "duration_s": 45,
+   "phase": "cruise 70-90 km/h",
+   "start_clock": "18:09:58",
+   "speed_kmh": {
+    "mean": 77.5,
+    "min": 70.0,
+    "max": 81.2
+   },
+   "engine_rpm": {
+    "mean": 1898.0,
+    "min": 1300,
+    "max": 2150
+   },
+   "pedal_V": {
+    "mean": 1.6,
+    "min": 0.86,
+    "max": 2.31
+   },
+   "gear": "4th",
+   "atf_C": {
+    "mean": 66.0,
+    "min": 65,
+    "max": 66
+   },
+   "locked_share_pct": 60,
+   "lockup_releases": 2
+  },
+  {
+   "start_s": 463,
+   "end_s": 487,
+   "duration_s": 24,
+   "phase": "coasting",
+   "start_clock": "18:10:43",
+   "speed_kmh": {
+    "mean": 32.2,
+    "min": 11.2,
+    "max": 53.2
+   },
+   "engine_rpm": {
+    "mean": 1008.0,
+    "min": 750,
+    "max": 1850
+   },
+   "pedal_V": {
+    "mean": 0.9,
+    "min": 0.86,
+    "max": 1.66
+   },
+   "gear": "4th",
+   "atf_C": {
+    "mean": 66.0,
+    "min": 66,
+    "max": 66
+   },
+   "locked_share_pct": 56,
+   "lockup_releases": 0
+  },
+  {
+   "start_s": 487,
+   "end_s": 523,
+   "duration_s": 36,
+   "phase": "stopped",
+   "start_clock": "18:11:06",
+   "speed_kmh": {
+    "mean": 0.0,
+    "min": 0.0,
+    "max": 0.0
+   },
+   "engine_rpm": {
+    "mean": 756.0,
+    "min": 700,
+    "max": 800
+   },
+   "pedal_V": {
+    "mean": 0.89,
+    "min": 0.86,
+    "max": 1.91
+   },
+   "gear": "1st",
+   "atf_C": {
+    "mean": 65.0,
+    "min": 65,
+    "max": 66
+   },
+   "lockup_releases": 0
+  },
+  {
+   "start_s": 523,
+   "end_s": 536,
+   "duration_s": 13,
+   "phase": "accelerating",
+   "start_clock": "18:11:42",
+   "speed_kmh": {
+    "mean": 23.8,
+    "min": 5.6,
+    "max": 42.0
+   },
+   "engine_rpm": {
+    "mean": 1801.0,
+    "min": 950,
+    "max": 2150
+   },
+   "pedal_V": {
+    "mean": 1.96,
+    "min": 1.33,
+    "max": 2.21
+   },
+   "gear": "3rd",
+   "atf_C": {
+    "mean": 65.0,
+    "min": 65,
+    "max": 65
+   },
+   "locked_share_pct": 0,
+   "lockup_releases": 0
+  },
+  {
+   "start_s": 536,
+   "end_s": 557,
+   "duration_s": 21,
+   "phase": "cruise 30-50 km/h",
+   "start_clock": "18:11:56",
+   "speed_kmh": {
+    "mean": 49.0,
+    "min": 47.6,
+    "max": 50.4
+   },
+   "engine_rpm": {
+    "mean": 1277.0,
+    "min": 1000,
+    "max": 1650
+   },
+   "pedal_V": {
+    "mean": 1.23,
+    "min": 0.86,
+    "max": 1.7
+   },
+   "gear": "4th",
+   "atf_C": {
+    "mean": 66.0,
+    "min": 65,
+    "max": 66
+   },
+   "locked_share_pct": 39,
+   "lockup_releases": 3
+  },
+  {
+   "start_s": 557,
+   "end_s": 570,
+   "duration_s": 13,
+   "phase": "coasting",
+   "start_clock": "18:12:17",
+   "speed_kmh": {
+    "mean": 36.4,
+    "min": 25.2,
+    "max": 47.6
+   },
+   "engine_rpm": {
+    "mean": 995.0,
+    "min": 800,
+    "max": 1350
+   },
+   "pedal_V": {
+    "mean": 0.95,
+    "min": 0.86,
+    "max": 1.31
+   },
+   "gear": "3rd",
+   "atf_C": {
+    "mean": 66.0,
+    "min": 66,
+    "max": 66
+   },
+   "locked_share_pct": 74,
+   "lockup_releases": 1
+  },
+  {
+   "start_s": 570,
+   "end_s": 583,
+   "duration_s": 13,
+   "phase": "cruise 0-30 km/h",
+   "start_clock": "18:12:30",
+   "speed_kmh": {
+    "mean": 25.2,
+    "min": 25.2,
+    "max": 25.2
+   },
+   "engine_rpm": {
+    "mean": 1693.0,
+    "min": 1100,
+    "max": 1800
+   },
+   "pedal_V": {
+    "mean": 1.83,
+    "min": 1.23,
+    "max": 1.93
+   },
+   "gear": "2nd",
+   "atf_C": {
+    "mean": 66.0,
+    "min": 66,
+    "max": 66
+   },
+   "lockup_releases": 0
+  },
+  {
+   "start_s": 583,
+   "end_s": 600,
+   "duration_s": 17,
+   "phase": "cruise 30-50 km/h",
+   "start_clock": "18:12:43",
+   "speed_kmh": {
+    "mean": 32.2,
+    "min": 30.8,
+    "max": 33.6
+   },
+   "engine_rpm": {
+    "mean": 1641.0,
+    "min": 1450,
+    "max": 1750
+   },
+   "pedal_V": {
+    "mean": 1.7,
+    "min": 1.43,
+    "max": 1.88
+   },
+   "gear": "3rd",
+   "atf_C": {
+    "mean": 66.0,
+    "min": 66,
+    "max": 66
+   },
+   "locked_share_pct": 0,
+   "lockup_releases": 0
+  }
+ ],
+ "events": [
+  {
+   "type": "lockup_release",
+   "t_s": 236.2,
+   "pedal_V": 2.31,
+   "pedal_V_5s_before": 2.22,
+   "speed_kmh": 86.8,
+   "speed_age_s": 2.5,
+   "gear": "4th",
+   "gear_age_s": 8.1,
+   "engine_rpm": 2300.0,
+   "input_rpm": 2070.0,
+   "peak_slip_rpm": 204,
+   "slip_saturated": true,
+   "input_rpm_step_pct": 0.0,
+   "released_for_s": 6.1,
+   "relock_pedal_V": 2.13,
+   "dcc_duty_before_pct": 98.8,
+   "dcc_duty_before_age_s": 8.1,
+   "dcc_duty_after_pct": 0.0,
+   "dcc_duty_after_age_s": 0.8,
+   "idle_flag": 0,
+   "idle_flag_age_s": 7.5,
+   "brake": 0,
+   "brake_age_s": 7.5,
+   "duty_confirms_release": true,
+   "kind": "full release",
+   "cause_hint": "pedal rose at steady input speed (possible lock-up schedule release; compare relock pedal V)",
+   "clock": "18:06:56"
+  },
+  {
+   "type": "lockup_release",
+   "t_s": 264.2,
+   "pedal_V": 1.52,
+   "pedal_V_5s_before": 1.55,
+   "speed_kmh": 81.3,
+   "speed_age_s": 0.2,
+   "gear": "4th",
+   "gear_age_s": 1.8,
+   "engine_rpm": 2064.0,
+   "input_rpm": 2010.0,
+   "peak_slip_rpm": 149,
+   "slip_saturated": false,
+   "input_rpm_step_pct": -2.4,
+   "released_for_s": 3.7,
+   "relock_pedal_V": 1.66,
+   "dcc_duty_before_pct": 0.0,
+   "dcc_duty_before_age_s": 1.8,
+   "dcc_duty_after_pct": 34.5,
+   "dcc_duty_after_age_s": 6.9,
+   "idle_flag": 1,
+   "idle_flag_age_s": 1.2,
+   "brake": 0,
+   "brake_age_s": 1.2,
+   "duty_confirms_release": false,
+   "kind": "partial slip",
+   "cause_hint": "pedal lifted / idle flag set (coast or lift-off release)",
+   "clock": "18:07:24"
+  },
+  {
+   "type": "lockup_release",
+   "t_s": 269.1,
+   "pedal_V": 1.7,
+   "pedal_V_5s_before": 1.56,
+   "speed_kmh": 82.8,
+   "speed_age_s": 3.7,
+   "gear": "4th",
+   "gear_age_s": 6.7,
+   "engine_rpm": 2150.0,
+   "input_rpm": 1980.0,
+   "peak_slip_rpm": 172,
+   "slip_saturated": false,
+   "input_rpm_step_pct": 0.9,
+   "released_for_s": 4.1,
+   "relock_pedal_V": 1.8,
+   "dcc_duty_before_pct": 0.0,
+   "dcc_duty_before_age_s": 6.7,
+   "dcc_duty_after_pct": 34.5,
+   "dcc_duty_after_age_s": 2.0,
+   "idle_flag": 1,
+   "idle_flag_age_s": 6.1,
+   "brake": 0,
+   "brake_age_s": 6.1,
+   "duty_confirms_release": false,
+   "kind": "partial slip",
+   "cause_hint": "pedal rose at steady input speed (possible lock-up schedule release; compare relock pedal V)",
+   "clock": "18:07:29"
+  },
+  {
+   "type": "lockup_release",
+   "t_s": 287.3,
+   "pedal_V": 1.5,
+   "pedal_V_5s_before": 1.03,
+   "speed_kmh": 84.9,
+   "speed_age_s": 2.9,
+   "gear": "4th",
+   "gear_age_s": 7.6,
+   "engine_rpm": 2100.0,
+   "input_rpm": 2040.0,
+   "peak_slip_rpm": 158,
+   "slip_saturated": false,
+   "input_rpm_step_pct": 2.1,
+   "released_for_s": 3.1,
+   "relock_pedal_V": 1.7,
+   "dcc_duty_before_pct": 0.0,
+   "dcc_duty_before_age_s": 7.6,
+   "dcc_duty_after_pct": 31.4,
+   "dcc_duty_after_age_s": 1.1,
+   "idle_flag": 1,
+   "idle_flag_age_s": 7.0,
+   "brake": 0,
+   "brake_age_s": 7.0,
+   "duty_confirms_release": false,
+   "kind": "partial slip",
+   "cause_hint": "pedal rose at steady input speed (possible lock-up schedule release; compare relock pedal V)",
+   "clock": "18:07:47"
+  },
+  {
+   "type": "lockup_release",
+   "t_s": 302.7,
+   "pedal_V": 1.64,
+   "pedal_V_5s_before": 1.45,
+   "speed_kmh": 84.4,
+   "speed_age_s": 3.6,
+   "gear": "4th",
+   "gear_age_s": 5.5,
+   "engine_rpm": 2100.0,
+   "input_rpm": 2010.0,
+   "peak_slip_rpm": 144,
+   "slip_saturated": false,
+   "input_rpm_step_pct": -1.5,
+   "released_for_s": 3.7,
+   "relock_pedal_V": 1.78,
+   "dcc_duty_before_pct": 35.7,
+   "dcc_duty_before_age_s": 5.5,
+   "dcc_duty_after_pct": 38.4,
+   "dcc_duty_after_age_s": 3.3,
+   "idle_flag": 0,
+   "idle_flag_age_s": 5.0,
+   "brake": 0,
+   "brake_age_s": 5.0,
+   "duty_confirms_release": false,
+   "kind": "partial slip",
+   "cause_hint": "pedal rose at steady input speed (possible lock-up schedule release; compare relock pedal V)",
+   "clock": "18:08:02"
+  },
+  {
+   "type": "lockup_release",
+   "t_s": 351.2,
+   "pedal_V": 1.52,
+   "pedal_V_5s_before": 1.12,
+   "speed_kmh": 72.7,
+   "speed_age_s": 0.4,
+   "gear": "4th",
+   "gear_age_s": 2.3,
+   "engine_rpm": 1900.0,
+   "input_rpm": 1770.0,
+   "peak_slip_rpm": 135,
+   "slip_saturated": false,
+   "input_rpm_step_pct": 0.1,
+   "released_for_s": 2.4,
+   "relock_pedal_V": 0.88,
+   "dcc_duty_before_pct": 0.0,
+   "dcc_duty_before_age_s": 2.3,
+   "dcc_duty_after_pct": 0.0,
+   "dcc_duty_after_age_s": 6.6,
+   "idle_flag": 1,
+   "idle_flag_age_s": 1.8,
+   "brake": 0,
+   "brake_age_s": 1.8,
+   "duty_confirms_release": false,
+   "kind": "partial slip",
+   "cause_hint": "pedal rose at steady input speed (possible lock-up schedule release; compare relock pedal V)",
+   "clock": "18:08:51"
+  },
+  {
+   "type": "lockup_release",
+   "t_s": 454.4,
+   "pedal_V": 1.48,
+   "pedal_V_5s_before": 1.64,
+   "speed_kmh": 80.7,
+   "speed_age_s": 0.4,
+   "gear": "4th",
+   "gear_age_s": 2.3,
+   "engine_rpm": 2000.0,
+   "input_rpm": 1950.0,
+   "peak_slip_rpm": 126,
+   "slip_saturated": false,
+   "input_rpm_step_pct": -3.9,
+   "released_for_s": 1.5,
+   "relock_pedal_V": 0.88,
+   "dcc_duty_before_pct": 100.0,
+   "dcc_duty_before_age_s": 2.3,
+   "dcc_duty_after_pct": 31.8,
+   "dcc_duty_after_age_s": 6.4,
+   "idle_flag": 1,
+   "idle_flag_age_s": 1.7,
+   "brake": 0,
+   "brake_age_s": 1.7,
+   "duty_confirms_release": false,
+   "kind": "partial slip",
+   "cause_hint": "pedal lifted / idle flag set (coast or lift-off release)",
+   "clock": "18:10:34"
+  },
+  {
+   "type": "lockup_release",
+   "t_s": 459.9,
+   "pedal_V": 1.48,
+   "pedal_V_5s_before": 1.0,
+   "speed_kmh": 73.5,
+   "speed_age_s": 2.7,
+   "gear": "4th",
+   "gear_age_s": 7.7,
+   "engine_rpm": 1850.0,
+   "input_rpm": 1740.0,
+   "peak_slip_rpm": 173,
+   "slip_saturated": false,
+   "input_rpm_step_pct": -2.0,
+   "released_for_s": 3.7,
+   "relock_pedal_V": 0.88,
+   "dcc_duty_before_pct": 100.0,
+   "dcc_duty_before_age_s": 7.7,
+   "dcc_duty_after_pct": 31.8,
+   "dcc_duty_after_age_s": 1.0,
+   "idle_flag": 1,
+   "idle_flag_age_s": 7.2,
+   "brake": 0,
+   "brake_age_s": 7.2,
+   "duty_confirms_release": false,
+   "kind": "partial slip",
+   "cause_hint": "pedal rose at steady input speed (possible lock-up schedule release; compare relock pedal V)",
+   "clock": "18:10:39"
+  },
+  {
+   "type": "lockup_release",
+   "t_s": 539.8,
+   "pedal_V": 1.31,
+   "pedal_V_5s_before": 1.06,
+   "speed_kmh": 46.7,
+   "speed_age_s": 1.4,
+   "gear": "4th",
+   "gear_age_s": 0.4,
+   "engine_rpm": 1391.0,
+   "input_rpm": 1140.0,
+   "peak_slip_rpm": 204,
+   "slip_saturated": true,
+   "input_rpm_step_pct": 0.6,
+   "released_for_s": 3.5,
+   "relock_pedal_V": 0.92,
+   "dcc_duty_before_pct": 0.0,
+   "dcc_duty_before_age_s": 0.4,
+   "dcc_duty_after_pct": 0.0,
+   "dcc_duty_after_age_s": 8.2,
+   "idle_flag": 0,
+   "idle_flag_age_s": 8.5,
+   "brake": 0,
+   "brake_age_s": 8.5,
+   "duty_confirms_release": false,
+   "kind": "full release",
+   "cause_hint": "pedal rose at steady input speed (possible lock-up schedule release; compare relock pedal V)",
+   "clock": "18:11:59"
+  },
+  {
+   "type": "lockup_release",
+   "t_s": 544.8,
+   "pedal_V": 1.33,
+   "pedal_V_5s_before": 1.3,
+   "speed_kmh": 48.8,
+   "speed_age_s": 3.6,
+   "gear": "4th",
+   "gear_age_s": 5.4,
+   "engine_rpm": 1350.0,
+   "input_rpm": 1140.0,
+   "peak_slip_rpm": 204,
+   "slip_saturated": true,
+   "input_rpm_step_pct": 0.0,
+   "released_for_s": 6.7,
+   "relock_pedal_V": 0.9,
+   "dcc_duty_before_pct": 0.0,
+   "dcc_duty_before_age_s": 5.4,
+   "dcc_duty_after_pct": 0.0,
+   "dcc_duty_after_age_s": 3.2,
+   "idle_flag": 0,
+   "idle_flag_age_s": 4.8,
+   "brake": 0,
+   "brake_age_s": 4.8,
+   "duty_confirms_release": false,
+   "kind": "full release",
+   "cause_hint": "no clear cause in the logged channels",
+   "clock": "18:12:04"
+  },
+  {
+   "type": "lockup_release",
+   "t_s": 553.6,
+   "pedal_V": 1.31,
+   "pedal_V_5s_before": 1.24,
+   "speed_kmh": 49.2,
+   "speed_age_s": 3.9,
+   "gear": "4th",
+   "gear_age_s": 5.8,
+   "engine_rpm": 1300.0,
+   "input_rpm": 1110.0,
+   "peak_slip_rpm": 204,
+   "slip_saturated": true,
+   "input_rpm_step_pct": -1.3,
+   "released_for_s": 2.3,
+   "relock_pedal_V": 0.88,
+   "dcc_duty_before_pct": 0.0,
+   "dcc_duty_before_age_s": 5.6,
+   "dcc_duty_after_pct": 0.0,
+   "dcc_duty_after_age_s": 3.1,
+   "idle_flag": 0,
+   "idle_flag_age_s": 5.1,
+   "brake": 0,
+   "brake_age_s": 5.1,
+   "duty_confirms_release": false,
+   "kind": "full release",
+   "cause_hint": "pedal rose at steady input speed (possible lock-up schedule release; compare relock pedal V)",
+   "clock": "18:12:13"
+  },
+  {
+   "type": "lockup_release",
+   "t_s": 559.0,
+   "pedal_V": 1.29,
+   "pedal_V_5s_before": 1.06,
+   "speed_kmh": 46.6,
+   "speed_age_s": 0.4,
+   "gear": "4th",
+   "gear_age_s": 2.3,
+   "engine_rpm": 1300.0,
+   "input_rpm": 1140.0,
+   "peak_slip_rpm": 204,
+   "slip_saturated": true,
+   "input_rpm_step_pct": -0.7,
+   "released_for_s": 1.8,
+   "relock_pedal_V": 0.88,
+   "dcc_duty_before_pct": 0.0,
+   "dcc_duty_before_age_s": 2.3,
+   "dcc_duty_after_pct": 0.0,
+   "dcc_duty_after_age_s": 6.6,
+   "idle_flag": 1,
+   "idle_flag_age_s": 1.7,
+   "brake": 0,
+   "brake_age_s": 1.7,
+   "duty_confirms_release": false,
+   "kind": "full release",
+   "cause_hint": "pedal rose at steady input speed (possible lock-up schedule release; compare relock pedal V)",
+   "clock": "18:12:19"
+  }
+ ],
+ "trends": {
+  "atf_C": {
+   "start": 62.0,
+   "end": 66.0,
+   "min": 62,
+   "max": 67,
+   "change_per_10min": 4.0
+  }
+ },
+ "data_quality": {
+  "rows": 3157,
+  "duration_s": 599.8,
+  "rows_per_s": 5.26,
+  "median_row_gap_s": 0.188,
+  "max_row_gap_s": 0.4,
+  "channels": {
+   "engine_rpm": {
+    "fresh_samples": 3157,
+    "median_interval_s": 0.19
+   },
+   "input_rpm": {
+    "fresh_samples": 3157,
+    "median_interval_s": 0.19
+   },
+   "output_rpm": {
+    "fresh_samples": 70,
+    "median_interval_s": 8.66
+   },
+   "atf_C": {
+    "fresh_samples": 70,
+    "median_interval_s": 8.66
+   },
+   "pedal_V": {
+    "fresh_samples": 3157,
+    "median_interval_s": 0.19
+   },
+   "theo_pressure": {
+    "fresh_samples": 3157,
+    "median_interval_s": 0.19
+   },
+   "shift_pos": {
+    "fresh_samples": 70,
+    "median_interval_s": 8.64
+   },
+   "dcc_slip_rpm": {
+    "fresh_samples": 3157,
+    "median_interval_s": 0.19
+   },
+   "dcc_duty_pct": {
+    "fresh_samples": 70,
+    "median_interval_s": 8.65
+   },
+   "sol_2nd_pct": {
+    "fresh_samples": 70,
+    "median_interval_s": 8.65
+   },
+   "sol_LR_pct": {
+    "fresh_samples": 70,
+    "median_interval_s": 8.63
+   },
+   "sol_OD_pct": {
+    "fresh_samples": 69,
+    "median_interval_s": 8.66
+   },
+   "sol_UD_pct": {
+    "fresh_samples": 69,
+    "median_interval_s": 8.66
+   },
+   "inhibitor": {
+    "fresh_samples": 69,
+    "median_interval_s": 8.66
+   },
+   "brake": {
+    "fresh_samples": 69,
+    "median_interval_s": 8.66
+   },
+   "hold_sw": {
+    "fresh_samples": 69,
+    "median_interval_s": 8.66
+   },
+   "tf_low": {
+    "fresh_samples": 69,
+    "median_interval_s": 8.66
+   },
+   "idle_pos": {
+    "fresh_samples": 69,
+    "median_interval_s": 8.66
+   },
+   "od_off_sig": {
+    "fresh_samples": 69,
+    "median_interval_s": 8.66
+   },
+   "ac_relay": {
+    "fresh_samples": 69,
+    "median_interval_s": 8.66
+   },
+   "elc_relay_V": {
+    "fresh_samples": 69,
+    "median_interval_s": 8.62
+   },
+   "od_off_sw": {
+    "fresh_samples": 69,
+    "median_interval_s": 8.67
+   },
+   "speed_kmh": {
+    "fresh_samples": 69,
+    "median_interval_s": 8.62
+   },
+   "fault_96": {
+    "fresh_samples": 70,
+    "median_interval_s": 8.64
+   },
+   "fault_97": {
+    "fresh_samples": 70,
+    "median_interval_s": 8.64
+   },
+   "fault_98": {
+    "fresh_samples": 70,
+    "median_interval_s": 8.64
+   },
+   "fault_99": {
+    "fresh_samples": 70,
+    "median_interval_s": 8.65
+   },
+   "fault_9A": {
+    "fresh_samples": 70,
+    "median_interval_s": 8.65
+   },
+   "fault_9B": {
+    "fresh_samples": 70,
+    "median_interval_s": 8.64
+   },
+   "fault_9C": {
+    "fresh_samples": 70,
+    "median_interval_s": 8.64
+   },
+   "fault_9D": {
+    "fresh_samples": 70,
+    "median_interval_s": 8.65
+   }
+  },
+  "notes": [
+   "26 slow channels (ac_relay, atf_C, brake, dcc_duty_pct, elc_relay_V, fault_96 and 20 more) were refreshed only every ~8.67 s; between refreshes the CSV repeats the last value. Speed, gear, DCC duty and flag values at an event can be that stale (see *_age_s).",
+   "Fast channels (dcc_slip_rpm, engine_rpm, input_rpm, pedal_V, theo_pressure) were refreshed every cycle, about 5.3 Hz.",
+   "DCC slip saturates at raw 0 and 255 (204 rpm shown): treat those samples as 'at least', not exact."
+  ],
+  "slip_saturated_pct": {
+   "hi": 77.5,
+   "lo": 22.5
+  }
+ },
+ "timezone": "-5"
+}

@@ -1,0 +1,280 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="color-scheme" content="dark">
+<title>Delica 4M40 Diag - Live</title>
+<style>
+:root{--bg:#0d1217;--panel:#151c23;--line:#26323d;--text:#e8eef2;--muted:#8fa1ae;--ok:#5fd6a0;--warn:#ffc46b;--bad:#ff6b6b;--accent:#4cc9f0}
+*{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--text);font:15px/1.4 system-ui,-apple-system,"Segoe UI",sans-serif}
+main{max-width:1200px;margin:0 auto;padding:12px}
+header{display:flex;flex-wrap:wrap;align-items:center;gap:10px;justify-content:space-between;margin-bottom:8px}
+h1{font-size:19px;margin:0}
+h2{font-size:14px;margin:0 0 6px;color:var(--muted);font-weight:600;text-transform:uppercase;letter-spacing:.04em}
+.pill{padding:3px 10px;border-radius:99px;font-size:13px;border:1px solid var(--line);background:var(--panel)}
+.pill.live{color:var(--ok);border-color:var(--ok)} .pill.connecting{color:var(--warn);border-color:var(--warn)}
+.pill.lost,.pill.error{color:var(--bad);border-color:var(--bad)} .pill.sim{color:var(--accent);border-color:var(--accent)}
+.panel{background:var(--panel);border:1px solid var(--line);border-radius:10px;padding:10px;margin-bottom:10px}
+.banner{font-size:13px;color:var(--warn);background:#2a2314;border:1px solid #5a4a22;border-radius:8px;padding:6px 10px;margin-bottom:10px}
+.controls{display:flex;flex-wrap:wrap;gap:8px;align-items:center}
+select,input[type=text],button,a.btn{font:inherit;color:var(--text);background:#1d2731;border:1px solid var(--line);border-radius:8px;padding:8px 12px;min-height:40px}
+button,a.btn{cursor:pointer;text-decoration:none;display:inline-flex;align-items:center}
+button.primary{background:#16435a;border-color:var(--accent)} button.danger{background:#4a1f24;border-color:var(--bad)}
+button.on{background:#17402f;border-color:var(--ok)} button:disabled{opacity:.45;cursor:default}
+input[type=text]{width:160px}
+label.chk{display:flex;align-items:center;gap:6px;color:var(--muted);font-size:13px}
+#msg{min-height:20px;color:var(--muted);font-size:13px;margin-top:6px}
+.cards{display:grid;grid-template-columns:repeat(auto-fill,minmax(150px,1fr));gap:8px}
+.card{background:#10161c;border:1px solid var(--line);border-radius:8px;padding:8px 10px;min-width:0}
+.card .lbl{font-size:12px;color:var(--muted);white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.card .val{font-size:26px;font-weight:600;font-variant-numeric:tabular-nums}
+.card .val small{font-size:12px;color:var(--muted);font-weight:400;margin-left:3px}
+.card .sub{font-size:11px;color:var(--muted);min-height:14px}
+.card.stale .val{opacity:.45} .card.flag-on .val{color:var(--ok)}
+.card.prov .lbl::after{content:" (provisional)";color:var(--warn)}
+.charts{display:grid;grid-template-columns:1fr;gap:10px}
+@media(min-width:900px){.charts{grid-template-columns:1fr 1fr}}
+.chart h2{display:flex;justify-content:space-between;flex-wrap:wrap;gap:6px}
+.legend span{margin-left:10px;font-size:12px;text-transform:none;letter-spacing:0}
+.legend i{display:inline-block;width:10px;height:3px;margin-right:4px;vertical-align:middle}
+canvas{width:100%;height:150px;display:block}
+table{border-collapse:collapse;width:100%;font-size:13px}
+th,td{border-bottom:1px solid var(--line);padding:4px 6px;text-align:left;white-space:nowrap}
+.scroll{overflow-x:auto}
+footer{color:var(--muted);font-size:12px;margin:12px 0 30px}
+</style>
+</head>
+<body>
+<main>
+<header>
+  <h1>Delica 4M40 Diag <span style="color:var(--muted);font-weight:400">live</span></h1>
+  <div><span id="simPill" class="pill sim" hidden>SIMULATOR</span> <span id="status" class="pill" role="status" aria-live="polite">idle</span></div>
+</header>
+<div class="banner">Park the van to connect. One computer at a time (they share DLC pin 7). Pin 1 must be grounded. Never connect anything to pin 9. This tool only reads.</div>
+
+<section class="panel">
+  <div class="controls">
+    <label>Computer <select id="ecu"><option value="gearbox">Gearbox (F3 06)</option><option value="engine">Engine (3002)</option></select></label>
+    <label>Profile <select id="profile"></select></label>
+    <button id="connect" class="primary">Connect</button>
+    <button id="stop" class="danger" disabled>Stop</button>
+    <button id="rec" disabled>Record: off</button>
+    <input type="text" id="label" placeholder="event label" maxlength="60" aria-label="Event label">
+    <button id="mark" disabled>Mark event</button>
+  </div>
+  <div class="controls" style="margin-top:8px">
+    <a class="btn" id="dlRaw" href="#">Raw CSV</a>
+    <a class="btn" id="dlDec" href="#">Decoded CSV</a>
+    <a class="btn" id="dlAi" href="#">AI summary (.md)</a>
+    <label>Graph window <select id="win"><option value="30">30 s</option><option value="60" selected>60 s</option><option value="120">2 min</option><option value="300">5 min</option></select></label>
+    <label class="chk" id="rawTempWrap" hidden><input type="checkbox" id="rawTemps"> temperatures as raw bytes</label>
+  </div>
+  <div id="msg"></div>
+  <div id="info" style="font-size:12px;color:var(--muted)"></div>
+</section>
+
+<section class="panel"><h2>Live values</h2><div class="cards" id="cards"></div></section>
+<section class="charts" id="charts"></section>
+<section class="panel" id="lockPanel" hidden>
+  <h2>Lock-up releases (slip jump from locked, highlighted red on the graphs)</h2>
+  <div class="scroll"><table><thead><tr><th>t (s)</th><th>pedal V</th><th>speed km/h</th><th>gear</th><th>engine rpm</th><th>input rpm</th><th>DCC duty %</th><th>released for</th></tr></thead><tbody id="lockRows"></tbody></table></div>
+</section>
+<footer id="foot">Hover a value for its channel, request address, confidence and evidence. Names and scales were cross-checked against the MMC-Reader diagnostic database; this project is not affiliated with MMC-Reader.</footer>
+</main>
+<script>
+'use strict';
+const TOKEN = "__TOKEN__";
+const KEY = new URLSearchParams(location.search).get('key');
+const $ = id => document.getElementById(id);
+const S = {ecu: 'gearbox', run: -1, seq: 0, rows: [], meta: {}, metaEcu: null, st: null, busy: false, tempNote: ''};
+
+const CARDS = {
+  gearbox: [['engine_rpm','Engine rpm','rpm',0],['input_rpm','Input rpm','rpm',0],['dcc_slip_rpm','DCC slip','rpm',0],['pedal_V','Pedal','V',2],
+    ['dcc_duty_pct','DCC duty','%',0],['speed_kmh','Speed','km/h',0],['shift_pos','Gear','',0],['atf_C','ATF temp','C',0],['output_rpm','Output rpm','rpm',0],
+    ['elc_relay_V','ELC relay','V',1],['brake','Brake','flag'],['idle_pos','Idle position','flag'],['ac_relay','A/C relay','flag'],['faults','A/T fault slots','faults']],
+  engine: [['rpm','Engine rpm','rpm',0],['boost_gauge_kPa','Boost (gauge)','kPa',0],['pedal_V','Pedal','V',2],['coolant_C','Coolant','C',0,'coolant_raw'],
+    ['boost_air_C','Boost air','C',0,'boost_air_raw'],['fuel_C','Fuel temp','C',0,'fuel_raw'],['battery_V','Battery','V',1],['baro_kPa','Baro','kPa',0],
+    ['timing_actual_CA','Timing actual','deg CA',1],['timing_target_CA','Timing target','deg CA',1],['sleeve_actual_pct','Sleeve actual','%',0],
+    ['sleeve_target_pct','Sleeve target','%',0],['speed_kmh','Speed','km/h',0],['idle_sw1','Idle switch 1','flag'],['idle_sw2','Idle switch 2','flag'],['faults','Fault bytes 50-53','faults']],
+};
+const CHARTS = {
+  gearbox: [
+    {title:'Engine rpm, input rpm, DCC slip', unit:'rpm', zero:1, series:[['engine_rpm','#4cc9f0','Engine'],['input_rpm','#f7b267','Input'],['dcc_slip_rpm','#ff6b6b','Slip (204 = saturated)',1]], lock:1},
+    {title:'Pedal sensor', unit:'V', zero:1, series:[['pedal_V','#5fd6a0','Pedal V']], lock:1},
+    {title:'DCC (lock-up) duty', unit:'%', series:[['dcc_duty_pct','#c792ea','DCC duty']], fixed:[0,100], lock:1},
+    {title:'ATF temperature', unit:'C', series:[['atf_C','#ffc46b','ATF']]},
+    {title:'Vehicle speed', unit:'km/h', zero:1, series:[['speed_kmh','#9ad1ff','Speed']], lock:1}],
+  engine: [
+    {title:'Engine rpm', unit:'rpm', zero:1, series:[['rpm','#4cc9f0','rpm']]},
+    {title:'Boost (gauge = absolute - baro)', unit:'kPa', series:[['boost_gauge_kPa','#5fd6a0','Boost']]},
+    {title:'Pedal sensor', unit:'V', zero:1, series:[['pedal_V','#f7b267','Pedal V']]},
+    {title:'Injection timing: actual vs target', unit:'deg CA', zero:1, series:[['timing_actual_CA','#4cc9f0','Actual'],['timing_target_CA','#ffc46b','Target',1]]},
+    {title:'Control sleeve: target vs actual', unit:'%', zero:1, series:[['sleeve_target_pct','#ffc46b','Target',1],['sleeve_actual_pct','#4cc9f0','Actual']]},
+    {title:'Coolant (provisional curve or raw byte)', unit:'C', series:[['coolant_C','#ff8fab','Coolant']], temp:'coolant_raw'}],
+};
+
+async function api(path, body) {
+  const opt = body === undefined ? {headers: {'X-Token': TOKEN}} :
+    {method: 'POST', headers: {'X-Token': TOKEN, 'Content-Type': 'application/json'}, body: JSON.stringify(body)};
+  const r = await fetch(path, opt);
+  const data = await r.json().catch(() => ({}));
+  if (!r.ok) throw new Error(data.error || r.statusText);
+  return data;
+}
+function say(text, bad) { $('msg').textContent = text || ''; $('msg').style.color = bad ? 'var(--bad)' : 'var(--muted)'; }
+
+// ---- controls -------------------------------------------------------------------------------
+$('ecu').onchange = () => { fillProfiles(); };
+function fillProfiles() {
+  const list = (S.st && S.st.profiles && S.st.profiles[$('ecu').value]) || [];
+  const cur = $('profile').value;
+  $('profile').innerHTML = list.map(p => `<option>${p}</option>`).join('');
+  if (list.includes(cur)) $('profile').value = cur;
+}
+$('connect').onclick = async () => {
+  try { say('Connecting... the engine computer needs a 10 s quiet line first.'); await api('/api/connect', {ecu: $('ecu').value, profile: $('profile').value}); }
+  catch (e) { say(e.message, true); }
+};
+$('stop').onclick = async () => { try { await api('/api/stop', {}); say('Stopping...'); } catch (e) { say(e.message, true); } };
+$('rec').onclick = async () => { try { await api('/api/record', {on: !(S.st && S.st.recording)}); } catch (e) { say(e.message, true); } };
+$('mark').onclick = async () => {
+  try { await api('/api/mark', {label: $('label').value || 'event'}); say('Marked: ' + ($('label').value || 'event')); $('label').value = ''; }
+  catch (e) { say(e.message, true); }
+};
+$('label').onkeydown = e => { if (e.key === 'Enter' && !$('mark').disabled) $('mark').click(); };
+$('win').onchange = $('rawTemps').onchange = () => { renderCards(); renderCharts(); };
+const q = KEY ? '?key=' + encodeURIComponent(KEY) : '';
+$('dlRaw').href = '/api/download.csv' + q;
+$('dlDec').href = '/api/download.csv' + (q ? q + '&decoded=1' : '?decoded=1');
+$('dlAi').href = '/api/summary.md' + q;
+
+// ---- polling ----------------------------------------------------------------------------------
+async function tick() {
+  try {
+    const st = await api('/api/state');
+    if (st.run_id !== S.run) { S.run = st.run_id; S.seq = 0; S.rows = []; }
+    S.st = st;
+    if (st.ecu && st.ecu !== S.metaEcu) {
+      const m = await api('/api/channels?ecu=' + st.ecu); S.meta = m.channels; S.metaEcu = st.ecu; S.tempNote = m.temperature_note; buildCharts();
+    }
+    if (st.seq > S.seq) {
+      const h = await api('/api/history?since=' + S.seq);
+      if (h.run_id === S.run) { S.rows.push(...h.rows); S.seq = h.seq; if (S.rows.length > 4000) S.rows.splice(0, S.rows.length - 4000); }
+    }
+    render();
+  } catch (e) { say('Dashboard server not reachable: ' + e.message, true); }
+  setTimeout(tick, 600);
+}
+
+function ecuNow() { return (S.st && S.st.ecu) || $('ecu').value; }
+function render() {
+  const st = S.st;
+  const pill = $('status'); pill.textContent = st.status; pill.className = 'pill ' + st.status;
+  $('simPill').hidden = !st.sim;
+  const active = st.status === 'live', busy = st.status === 'connecting';
+  if (st.ecu && (active || busy)) $('ecu').value = st.ecu;
+  $('connect').disabled = active || busy; $('stop').disabled = !(active || busy);
+  $('rec').disabled = !active; $('mark').disabled = !active;
+  $('rec').textContent = 'Record: ' + (st.recording ? 'ON' : 'off'); $('rec').className = st.recording ? 'on' : '';
+  fillProfilesOnce();
+  if (st.profile && (active || busy)) $('profile').value = st.profile;
+  if (st.status !== 'idle') say(st.detail, st.status === 'error' || st.status === 'lost');
+  else say(st.detail);
+  $('info').textContent = st.ecu ? `${st.ecu} ${st.ecu_id || ''} | profile ${st.profile} | ${st.rows_per_s || '-'} rows/s | elapsed ${st.elapsed_s}s | file ${st.csv_name || '-'}` : '';
+  $('rawTempWrap').hidden = ecuNow() !== 'engine';
+  renderCards(); renderCharts(); renderLocks();
+}
+let profilesFilled = false;
+function fillProfilesOnce() { if (!profilesFilled && S.st.profiles) { profilesFilled = true; fillProfiles(); } }
+
+// ---- cards ------------------------------------------------------------------------------------
+function fmt(v, d) { return typeof v === 'number' ? v.toFixed(d) : String(v); }
+function tip(key) {
+  const m = S.meta[key]; if (!m) return '';
+  return `${m.name} | request ${m.addr} | confidence: ${m.confidence}${m.evidence ? ' | ' + m.evidence : ''}`;
+}
+function renderCards() {
+  const ecu = ecuNow(), st = S.st, L = st.latest || {}, A = st.ages || {};
+  const raw = $('rawTemps').checked;
+  let html = '';
+  for (const c of (CARDS[ecu] || [])) {
+    let [key, label, unit, d, alt] = c;
+    let val, sub = '', cls = 'card', title = '';
+    if (unit === 'faults') {
+      const keys = Object.keys(L).filter(k => k.startsWith('fault_')).sort();
+      const set = keys.filter(k => !['00', 'FF'].includes(L[k]));
+      val = !keys.length ? '-' : set.length ? set.map(k => k.slice(-2) + ':' + L[k]).join(' ') : 'none';
+      if (set.length) cls += ' flag-on';
+      sub = 'raw bytes, look up in your manual'; unit = ''; title = 'Raw fault bytes; no descriptions are shipped (docs/CHANNELS.md).';
+    } else if (unit === 'flag') {
+      const v = L[key]; val = v === undefined ? '-' : (v ? 'ON' : 'off'); if (v) cls += ' flag-on'; unit = ''; title = tip(key);
+    } else {
+      let k = key;
+      if (alt && raw) { k = alt; unit = 'raw'; d = 0; }
+      const v = L[k]; val = v === undefined ? '-' : fmt(v, d); title = tip(k);
+      if (key === 'dcc_slip_rpm' && L.dcc_slip_sat) { val = (L.dcc_slip_sat === 'hi' ? '>= ' : '<= ') + val; sub = 'saturated'; }
+      if (alt && !raw) { cls += ' prov'; if (v === undefined && L[alt] !== undefined) sub = 'raw ' + L[alt] + ' (out of range)'; else sub = 'raw ' + (L[alt] ?? '-'); title += ' | ' + S.tempNote; }
+      const age = A[k]; if (age !== undefined && age > 3) { cls += ' stale'; sub = (sub ? sub + ' | ' : '') + 'age ' + age + ' s'; }
+    }
+    html += `<div class="${cls}" title="${title.replace(/"/g, '&quot;')}"><div class="lbl">${label}</div><div class="val">${val}<small>${unit || ''}</small></div><div class="sub">${sub}</div></div>`;
+  }
+  $('cards').innerHTML = html;
+}
+
+// ---- charts -----------------------------------------------------------------------------------
+function buildCharts() {
+  $('charts').innerHTML = (CHARTS[S.metaEcu] || []).map((c, i) =>
+    `<div class="panel chart"><h2><span>${c.title} (${c.unit})</span><span class="legend">${c.series.map(s => `<span><i style="background:${s[1]}"></i>${s[2]}</span>`).join('')}</span></h2><canvas id="ch${i}"></canvas></div>`).join('');
+}
+function renderCharts() {
+  const ecu = S.metaEcu; if (!ecu) return;
+  const win = +$('win').value, rows = S.rows, tNow = rows.length ? rows[rows.length - 1].t : 0, raw = $('rawTemps').checked;
+  (CHARTS[ecu] || []).forEach((c, i) => {
+    const cv = $('ch' + i); if (!cv) return;
+    const dpr = window.devicePixelRatio || 1, w = cv.clientWidth, h = cv.clientHeight;
+    if (cv.width !== Math.round(w * dpr)) { cv.width = Math.round(w * dpr); cv.height = Math.round(h * dpr); }
+    const g = cv.getContext('2d'); g.setTransform(dpr, 0, 0, dpr, 0, 0); g.clearRect(0, 0, w, h);
+    const t0 = tNow - win, pad = {l: 44, r: 8, t: 6, b: 16};
+    const series = c.series.map(s => ({key: (c.temp && raw) ? c.temp : s[0], color: s[1], dash: s[3]}));
+    let lo = Infinity, hi = -Infinity;
+    const pts = series.map(s => {
+      const p = []; for (const r of rows) { if (r.t < t0 - 1) continue; const v = r[s.key]; if (typeof v === 'number') { p.push([r.t, v]); lo = Math.min(lo, v); hi = Math.max(hi, v); } }
+      return p;
+    });
+    if (c.fixed) { lo = c.fixed[0]; hi = c.fixed[1]; }
+    if (!isFinite(lo)) { lo = 0; hi = 1; }
+    if (hi - lo < 1e-6) { hi = lo + 1; }
+    if (c.zero && lo > 0) lo = 0;
+    const span = hi - lo; if (!c.fixed) { if (!c.zero) lo -= span * .08; hi += span * .08; }
+    const X = t => pad.l + (t - t0) / win * (w - pad.l - pad.r), Y = v => h - pad.b - (v - lo) / (hi - lo) * (h - pad.t - pad.b);
+    g.font = '11px system-ui'; g.fillStyle = '#8fa1ae'; g.strokeStyle = '#26323d'; g.lineWidth = 1;
+    for (let k = 0; k <= 4; k++) { const v = lo + (hi - lo) * k / 4, y = Y(v); g.beginPath(); g.moveTo(pad.l, y); g.lineTo(w - pad.r, y); g.stroke(); g.fillText(v.toFixed(span < 5 ? 2 : span < 50 ? 1 : 0), 2, y + 4); }
+    g.fillText('-' + win + ' s', pad.l, h - 3); g.fillText('now', w - 26, h - 3);
+    // lock-up releases (red) and user markers (dashed yellow)
+    if (c.lock) for (const e of (S.st.lockups || [])) {
+      const a = Math.max(e.t, t0), b = Math.min(e.end == null ? tNow : e.end, tNow); if (b < t0 || e.t > tNow) continue;
+      g.fillStyle = 'rgba(255,90,90,.22)'; g.fillRect(X(a), pad.t, Math.max(X(b) - X(a), 3), h - pad.t - pad.b);
+      const txt = 'unlocked' + (e.pedal_V != null ? ' @' + e.pedal_V + ' V' : ''); g.fillStyle = '#ff9a9a';
+      g.fillText(txt, Math.min(X(a) + 3, w - g.measureText(txt).width - 4), pad.t + 10);
+    }
+    let lastM = '';
+    for (const r of rows) { if (r.t < t0) continue; if (r.marker && r.marker !== 'start' && r.marker !== lastM) { lastM = r.marker; g.strokeStyle = '#ffc46b'; g.setLineDash([4, 3]); g.beginPath(); g.moveTo(X(r.t), pad.t); g.lineTo(X(r.t), h - pad.b); g.stroke(); g.setLineDash([]); g.fillStyle = '#ffc46b'; g.fillText(r.marker, Math.min(X(r.t) + 3, w - 60), h - pad.b - 4); } else if (!r.marker) lastM = ''; }
+    series.forEach((s, j) => {
+      const p = pts[j]; if (!p.length) return;
+      g.strokeStyle = s.color; g.lineWidth = 1.6; g.setLineDash(s.dash ? [5, 3] : []); g.beginPath();
+      p.forEach(([t, v], n) => { const x = X(t), y = Y(v); n ? g.lineTo(x, y) : g.moveTo(x, y); }); g.stroke(); g.setLineDash([]);
+    });
+  });
+}
+function renderLocks() {
+  const L = (S.st.lockups || []), on = S.metaEcu === 'gearbox';
+  $('lockPanel').hidden = !on;
+  $('lockRows').innerHTML = L.slice().reverse().map(e => `<tr><td>${e.t.toFixed(1)}</td><td>${e.pedal_V ?? '-'}</td><td>${e.speed_kmh ?? '-'}</td><td>${e.gear ?? '-'}</td><td>${e.engine_rpm ?? '-'}</td><td>${e.input_rpm ?? '-'}</td><td>${e.dcc_duty_pct ?? '-'}</td><td>${e.end == null ? 'still released' : (e.end - e.t).toFixed(1) + ' s'}</td></tr>`).join('') || '<tr><td colspan="8">none detected yet</td></tr>';
+}
+window.addEventListener('resize', renderCharts);
+tick();
+</script>
+</body>
+</html>
